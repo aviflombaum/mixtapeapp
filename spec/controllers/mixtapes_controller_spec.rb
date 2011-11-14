@@ -24,7 +24,7 @@ describe MixtapesController do
   # Mixtape. As you add validations to Mixtape, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => "My Favorite Playlist"}
   end
 
   describe "GET index" do
