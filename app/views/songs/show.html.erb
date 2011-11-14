@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Artist:</b>
+  <%= link_to @song.artist_name, @song.artist %>
+</p>
+
+<p>
   <b>Audio:</b>
   <%= link_to @song.audio.original_filename, @song.audio.url %>
 </p>
