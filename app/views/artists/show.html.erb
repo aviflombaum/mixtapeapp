@@ -2,17 +2,17 @@
 
 <p>
   <b>Name:</b>
-  <%= @mixtape.name %>
+  <%= @artist.name %>
 </p>
 
 <p>
   <b>Songs:</b>
   <ul>
-    <% @mixtape.songs.each do |song| %>
+    <% @artist.songs.each do |song| %>
       <%= content_tag :li, link_to(song.name, song) %>
     <% end %>
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
-<%= link_to 'Back', mixtapes_path %>
+<%= link_to 'Edit', edit_artist_path(@artist) %> |
+<%= link_to 'Back', artists_path %>
