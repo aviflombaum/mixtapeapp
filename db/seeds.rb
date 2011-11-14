@@ -55,8 +55,8 @@ Dir.foreach("#{Rails.root}/db/seed/songs") do |file_name|
   
   song = Song.new :name => mp3.tag.title, :artist_name => mp3.tag.artist, :audio => file
   
-  @songs << song if song.save
+  (@songs << song) and puts "......saving #{song.artist.name}  - #{song.name} (#{song.audio.original_filename})" if song.save
 end
 
 @mixtape.songs << @songs
-@mixtape.save
+puts "#{@mixtape.name} created with #{@songs.count} songs." if @mixtape.save
