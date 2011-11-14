@@ -12,9 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "Mixtape name" %><br />
     <%= f.text_field :name %>
   </div>
+
+  <fieldset>
+    <legend>Add Songs</legend>
+    <%= f.fields_for :songs do |s| %>
+      <%= render 'songs/fields', :f => s %>
+    <% end %>
+    </legend>
+  </fieldset>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
