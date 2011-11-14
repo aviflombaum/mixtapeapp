@@ -5,6 +5,11 @@ class Song < ActiveRecord::Base
   
   has_attached_file :audio
 
+  # http://rubydoc.info/github/thoughtbot/paperclip/master/Paperclip/ClassMethods:validates_attachment_content_type
+  # https://netfiles.uiuc.edu/xythoswfs/static/en/content_type.htm
+  validates_attachment_presence :audio
+  validates_attachment_content_type :audio, :content_type => /^audio/
+  
   def artist_name
     self.artist.name if self.artist.present?
   end

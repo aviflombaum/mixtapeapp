@@ -17,6 +17,10 @@ group :assets do
 end
 
 gem 'paperclip'
+
+gem 'ruby-mp3info', :require => 'mp3info'
+# gem 'taglib-ruby', :require => 'taglib'
+
 gem 'jquery-rails'
 
 group :development, :test do
