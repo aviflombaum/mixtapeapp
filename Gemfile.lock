@@ -113,6 +113,7 @@ GEM
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
       ruby-debug-base19 (>= 0.11.19)
+    ruby-mp3info (0.6.16)
     ruby_core_source (0.1.5)
       archive-tar-minitar (>= 0.5.2)
     sass (3.1.10)
@@ -147,6 +148,7 @@ DEPENDENCIES
   rails (= 3.1.1)
   rspec-rails
   ruby-debug19
+  ruby-mp3info
   sass-rails (~> 3.1.4)
   sqlite3
   uglifier (>= 1.0.3)

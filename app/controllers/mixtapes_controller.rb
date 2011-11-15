@@ -24,7 +24,7 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/new
   # GET /mixtapes/new.json
   def new
-    @mixtape = Mixtape.new
+    @mixtape = Mixtape.new(:songs => [Song.new])
     
     respond_to do |format|
       format.html # new.html.erb
