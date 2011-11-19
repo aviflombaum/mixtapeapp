@@ -12,3 +12,10 @@
   <%= f.label :audio %><br />
   <%= f.file_field :audio %>
 </div>
+
+<% if defined?(remove_song) && remove_song %>
+<div class="field">
+  <%= f.label :_destroy, "Remove Song" %><br />
+  <%= f.check_box :_destroy %>
+</div>
+<% end %>

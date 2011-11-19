@@ -19,7 +19,7 @@
   <fieldset>
     <legend>Add Songs</legend>
     <%= f.fields_for :songs do |s| %>
-      <%= render 'songs/fields', :f => s %>
+      <%= render 'songs/fields', :f => s, :remove_song => true %>
     <% end %>
     </legend>
   </fieldset>
