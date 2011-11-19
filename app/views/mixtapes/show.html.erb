@@ -8,7 +8,7 @@
 <p>
   <b>Songs:</b>
   <ul>
-    <% @mixtape.songs.each do |song| %>
+    <% @mixtape.songs.order(:position).each do |song| %>
       <%= content_tag :li, link_to(song.name, song) %>
     <% end %>
   </ul>
