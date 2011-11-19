@@ -7,6 +7,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$('form a.add-song').live('click', function() {
+  var content = $('#songs_fields_template').html();
+  var regexp  = new RegExp('new_songs', 'g');
+  var new_id  = new Date().getTime();
+      
+  $(this).before(content.replace(regexp, new_id)); 
+  return false;
+});
 
 $('form a.remove-song').live('click', function() {
   var hidden_field = $(this).prev('input[type=hidden]')[0];
