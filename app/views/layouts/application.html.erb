@@ -8,7 +8,18 @@
 </head>
 <body>
 
-<%= yield %>
+<nav>
+	<ul>
+		<li><%= link_to_unless_current "Artists", artists_path %></li>
+		<li><%= link_to_unless_current "Songs", songs_path %></li>
+		<li><%= link_to_unless_current "Mixtapes", mixtapes_path %></li>		
+	</ul>
+</nav>
+
+<section id="content">
+	<%= yield %>
+</section>
+
 
 </body>
 </html>
