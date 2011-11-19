@@ -14,5 +14,7 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
-<%= link_to 'Back', mixtapes_path %>
+<% content_for :submenu do %>
+  <%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
+  <%= link_to 'Back', mixtapes_path %>
+<% end %>
