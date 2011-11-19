@@ -12,3 +12,10 @@
   <%= f.label :audio %><br />
   <%= f.file_field :audio %>
 </div>
+
+<% if defined?(remove_song) && remove_song %>
+<div class="field">
+  <%= f.hidden_field :_destroy %>
+  <%= link_to('Remove song', "javascript:void(0)", :class => "remove-song") %>
+</div>
+<% end %>

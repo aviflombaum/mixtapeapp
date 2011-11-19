@@ -7,8 +7,8 @@ class Song < ActiveRecord::Base
 
   # http://rubydoc.info/github/thoughtbot/paperclip/master/Paperclip/ClassMethods:validates_attachment_content_type
   # https://netfiles.uiuc.edu/xythoswfs/static/en/content_type.htm
-  validates_attachment_presence :audio
-  validates_attachment_content_type :audio, :content_type => /^audio/
+  validates_attachment_presence :audio, :if => lambda {|s| s.audio.exists?}
+  validates_attachment_content_type :audio, :content_type => /^audio/, :message => "must be an audio file"
   
   def artist_name
     self.artist.name if self.artist.present?

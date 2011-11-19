@@ -18,10 +18,16 @@
 
   <fieldset>
     <legend>Add Songs</legend>
+
     <%= f.fields_for :songs do |s| %>
-      <%= render 'songs/fields', :f => s %>
+      <div class="song fields">
+        <%= render 'songs/fields', :f => s, :remove_song => true %>
+      </div>
     <% end %>
-    </legend>
+    
+    <%= link_to('Add song', "javascript:void(0)", :class => "add-song") %>
+    
+    <%= new_child_fields_template(f, :songs) %>
   </fieldset>
   
   <div class="actions">
