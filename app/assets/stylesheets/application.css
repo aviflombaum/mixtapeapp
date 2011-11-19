@@ -5,11 +5,3 @@
  *= require_self
  *= require_tree . 
 */
-
-/* Navigation */
-body {margin: 0;}
-nav ul {margin: 0; padding: 8px 8px 4px 8px; background: #000; height: 20px; list-style: none;}
-nav ul li {margin-right: 8px; float: right;}
-nav ul li a {color: #FFF !important; text-decoration: none;}
-nav ul li a:hover {color: #666 !important; text-decoration: underline;} 
-section#content {margin: 2px 8px;}
