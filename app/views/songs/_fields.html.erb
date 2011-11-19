@@ -15,7 +15,7 @@
 
 <% if defined?(remove_song) && remove_song %>
 <div class="field">
-  <%= f.label :_destroy, "Remove Song" %><br />
-  <%= f.check_box :_destroy %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to('Remove song', "javascript:void(0)", :class => "remove-song") %>
 </div>
 <% end %>

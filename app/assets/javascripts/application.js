@@ -7,3 +7,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$('form a.remove-song').live('click', function() {
+  var hidden_field = $(this).prev('input[type=hidden]')[0];
+  if(hidden_field) {
+    hidden_field.value = '1';
+  }
+  $(this).parents('.song.fields').hide();
+  return false;
+});
