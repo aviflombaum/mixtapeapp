@@ -1,6 +1,6 @@
 class Song < ActiveRecord::Base
   belongs_to :artist
-  has_many :playlists
+  has_many :playlists, :inverse_of => :song
   has_many :mixtapes, :through => :playlists
   
   has_attached_file :audio

@@ -1,5 +1,5 @@
 class Mixtape < ActiveRecord::Base
-  has_many :playlists
+  has_many :playlists, :inverse_of => :mixtape
   has_many :songs, :through => :playlists
   
   validates_presence_of :name
@@ -9,4 +9,10 @@ class Mixtape < ActiveRecord::Base
   # after_initialize(:on => :create) do
   #   self.songs.build if self.songs.blank?
   # end
+  
+  before_create :assign_playlist_position
+  
+  def assign_playlist_position
+    debugger
+  end
 end
