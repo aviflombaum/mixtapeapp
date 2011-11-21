@@ -20,15 +20,13 @@
     <legend>Songs</legend>
     
     <% if @mixtape.new_record? %>
-      <%= f.fields_for :songs do |s| %>
-        <div class="song fields">
-          <%= render 'songs/fields', :f => s, :remove_song => true %>
-        </div>
+      <%= f.fields_for :playlists do |p| %>
+        <%= render 'playlists/fields', :f => p %>
       <% end %>    
     <% else %>
       <% @mixtape.playlists.order(:position).each_with_index do |playlist, index | %>
         <%= f.fields_for :playlists, playlist do |p| %>
-          <div class="song fields">
+          <div class="playlist fields">
             <div class="field">
               <%= p.number_field :position, :value => p.object.position || (index+1) %> - <%= p.object.song.name %>            
               <%= p.hidden_field :_destroy %>
@@ -40,7 +38,7 @@
     <% end %>
     <%= link_to('Add song', "javascript:void(0)", :class => "add-song") %>
     
-    <%= new_child_fields_template(f, :songs) %>
+    <%= new_child_fields_template(f, :playlists) %>
   </fieldset>
   
   <div class="actions">

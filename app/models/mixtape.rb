@@ -3,14 +3,14 @@ class Mixtape < ActiveRecord::Base
   has_many :songs, :through => :playlists
   
   validates_presence_of :name
-  accepts_nested_attributes_for :songs, :reject_if => lambda { |m| m[:audio].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :playlists, :allow_destroy => true
+  accepts_nested_attributes_for :songs
+  accepts_nested_attributes_for :playlists, :allow_destroy => true, :reject_if => lambda {|p| p[:song_attributes] && p[:song_attributes][:audio].blank?}
   
   # after_initialize(:on => :create) do
   #   self.songs.build if self.songs.blank?
   # end
   
-  before_create :assign_playlist_position
+  before_create  { assign_playlist_position }
   
   def assign_playlist_position
     self.playlists.each_with_index do |playlist, index|
