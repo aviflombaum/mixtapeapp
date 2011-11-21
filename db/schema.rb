@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121222719) do
+ActiveRecord::Schema.define(:version => 20111121223902) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20111121222719) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end
