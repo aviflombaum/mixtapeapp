@@ -6,63 +6,66 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Create a User
+  User.create(:username => "admin", :email => "avi@flombaum.com", :password => "testtest")
+
 # Create a mixtape
-# Loop through the contents of a directory
-  # for each file, check if it's an mp3
-  # if it's an mp3 file, create a song
-   # parse the file for an artist name
-   # read the file data
-   # create a song with the file data and the artist
-# Add all the songs to the mixtape
- # require "mp3info"
+  # Loop through the contents of a directory
+    # for each file, check if it's an mp3
+    # if it's an mp3 file, create a song
+     # parse the file for an artist name
+     # read the file data
+     # create a song with the file data and the artist
+  # Add all the songs to the mixtape
+   # require "mp3info"
  
-@mixtape = Mixtape.new(:name => "My Favorite Songs")
-puts "Initialized Mixtape - #{@mixtape.name}..."
+  @mixtape = Mixtape.new(:name => "My Favorite Songs")
+  puts "Initialized Mixtape - #{@mixtape.name}..."
 
-@songs = []
+  @songs = []
 
-# File API - http://www.ruby-doc.org/core-1.9.2/File.html
-# Dir API - http://www.ruby-doc.org/core-1.9.2/Dir.html
-# Dir.entries vs Dir.foreach
+  # File API - http://www.ruby-doc.org/core-1.9.2/File.html
+  # Dir API - http://www.ruby-doc.org/core-1.9.2/Dir.html
+  # Dir.entries vs Dir.foreach
 
-# Dir.entries("#{Rails.root}/db/seed/songs").each do |file
+  # Dir.entries("#{Rails.root}/db/seed/songs").each do |file
 
-puts "Opening #{Rails.root}/db/seed/songs..."
+  puts "Opening #{Rails.root}/db/seed/songs..."
 
-Dir.foreach("#{Rails.root}/db/seed/songs") do |file_name|
-  next if file_name == "." || file_name == ".."
-  puts "...processing #{file_name}"
+  Dir.foreach("#{Rails.root}/db/seed/songs") do |file_name|
+    next if file_name == "." || file_name == ".."
+    puts "...processing #{file_name}"
 
-  # How to check if it's an MP3
+    # How to check if it's an MP3
   
-  # if file_name.split(".").last != "mp3"
-  #   puts "......skipping #{file_name} because it isn't an mp3" 
-  #   next
-  # end
+    # if file_name.split(".").last != "mp3"
+    #   puts "......skipping #{file_name} because it isn't an mp3" 
+    #   next
+    # end
   
-  file = File.new("#{Rails.root}/db/seed/songs/#{file_name}", 'r')
+    file = File.new("#{Rails.root}/db/seed/songs/#{file_name}", 'r')
   
-  if File.extname(file.path) != ".mp3"
-    puts "......skipping #{file_name} because it isn't an mp3" 
-    next
+    if File.extname(file.path) != ".mp3"
+      puts "......skipping #{file_name} because it isn't an mp3" 
+      next
+    end
+  
+    # https://www.ruby-toolbox.com/gems/ruby-mp3info
+    # https://github.com/moumar/ruby-mp3info
+    # http://rubydoc.info/gems/ruby-mp3info/frames
+  
+    mp3 = Mp3Info.open(file.path)
+  
+    song = Song.new :name => mp3.tag.title, :artist_name => mp3.tag.artist, :audio => file
+  
+    (@songs << song) and puts "......saving #{song.artist.name}  - #{song.name} (#{song.audio.original_filename})" if song.save
   end
-  
-  # https://www.ruby-toolbox.com/gems/ruby-mp3info
-  # https://github.com/moumar/ruby-mp3info
-  # http://rubydoc.info/gems/ruby-mp3info/frames
-  
-  mp3 = Mp3Info.open(file.path)
-  
-  song = Song.new :name => mp3.tag.title, :artist_name => mp3.tag.artist, :audio => file
-  
-  (@songs << song) and puts "......saving #{song.artist.name}  - #{song.name} (#{song.audio.original_filename})" if song.save
-end
 
-@mixtape.playlists << @songs.collect{|s| @mixtape.playlists.build(:song => s)}
+  @mixtape.playlists << @songs.collect{|s| @mixtape.playlists.build(:song => s)}
 
-if @mixtape.save
-  puts "#{@mixtape.name} created with #{@songs.count} songs." 
-else
-  puts "Could not save mixtape because\n"
-  puts @mixtape.errors.full_messages
-end
+  if @mixtape.save
+    puts "#{@mixtape.name} created with #{@songs.count} songs." 
+  else
+    puts "Could not save mixtape because\n"
+    puts @mixtape.errors.full_messages
+  end
