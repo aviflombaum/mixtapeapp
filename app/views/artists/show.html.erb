@@ -8,9 +8,7 @@
 <p>
   <b>Songs:</b>
   <ul>
-    <% @artist.songs.each do |song| %>
-      <%= content_tag :li, link_to(song.name, song) %>
-    <% end %>
+    <%= render :partial => 'songs/song_li', :collection => @artist.songs.order(:position), :as => :song %>
   </ul>
 </p>
 

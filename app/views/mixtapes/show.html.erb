@@ -8,11 +8,11 @@
 <p>
   <b>Songs:</b>
   <ul>
-    <% @mixtape.songs.each do |song| %>
-      <%= content_tag :li, link_to(song.name, song) %>
-    <% end %>
+    <%= render :partial => 'songs/song_li', :collection => @mixtape.songs.order(:position), :as => :song %>
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
-<%= link_to 'Back', mixtapes_path %>
+<% content_for :submenu do %>
+  <%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
+  <%= link_to 'Back', mixtapes_path %>
+<% end %>
