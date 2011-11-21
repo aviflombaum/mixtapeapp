@@ -31,6 +31,7 @@ GEM
       multi_json (~> 1.0)
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
+    bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cocaine (0.2.0)
     coffee-rails (3.1.1)
@@ -142,6 +143,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   coffee-rails (~> 3.1.1)
   jquery-rails
   paperclip
