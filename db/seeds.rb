@@ -58,5 +58,11 @@ Dir.foreach("#{Rails.root}/db/seed/songs") do |file_name|
   (@songs << song) and puts "......saving #{song.artist.name}  - #{song.name} (#{song.audio.original_filename})" if song.save
 end
 
-@mixtape.songs << @songs
-puts "#{@mixtape.name} created with #{@songs.count} songs." if @mixtape.save
+@mixtape.playlists << @songs.collect{|s| @mixtape.playlists.build(:song => s)}
+
+if @mixtape.save
+  puts "#{@mixtape.name} created with #{@songs.count} songs." 
+else
+  puts "Could not save mixtape because\n"
+  puts @mixtape.errors.full_messages
+end
