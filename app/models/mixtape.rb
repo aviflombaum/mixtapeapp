@@ -13,6 +13,8 @@ class Mixtape < ActiveRecord::Base
   before_create :assign_playlist_position
   
   def assign_playlist_position
-    debugger
+    self.playlists.each_with_index do |playlist, index|
+      playlist.position ||= index+1
+    end
   end
 end

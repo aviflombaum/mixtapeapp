@@ -1,46 +1,6 @@
 <h1>Editing mixtape</h1>
 
-<%= form_for(@mixtape) do |f| %>
-  <% if @mixtape.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mixtape.errors.count, "error") %> prohibited this mixtape from being saved:</h2>
-
-      <ul>
-      <% @mixtape.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name, "Mixtape name" %><br />
-    <%= f.text_field :name %>
-  </div>
-
-  <fieldset>
-    <legend>Songs</legend>
-    
-    <% @mixtape.playlists.order(:position).each_with_index do |playlist, index | %>
-      <%= f.fields_for :playlists, playlist do |p| %>
-        <div class="song fields">
-          <div class="field">
-            <%= p.number_field :position, :value => p.object.position || (index+1) %> - <%= p.object.song.name %>            
-            <%= p.hidden_field :_destroy %>
-            <%= link_to('Remove song', "javascript:void(0)", :class => "remove-song") %>
-          </div>
-        </div>
-    <% end %>
-    <% end %>
-    <%= link_to('Add song', "javascript:void(0)", :class => "add-song") %>
-    
-    <%= new_child_fields_template(f, :songs) %>
-  </fieldset>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Show', @mixtape %> |
 <%= link_to 'Back', mixtapes_path %>
