@@ -1,4 +1,8 @@
 Mixtapeapp::Application.routes.draw do
+  get "signup" => "users#new", :as => "signup"
+  
+  resources :users, :only => [:new, :create]
+
   resources :artists
 
   resources :songs
