@@ -19,7 +19,13 @@
 	
 	<section id="utility">
 	  <ul>
-	    <li><%= link_to_unless_current 'Sign Up', signup_path %></li>
+	    <% if logged_in? %>
+	      <li>Logged in as: <%= current_user.username %></li>
+	      <li><%= link_to_unless_current 'Logout', logout_path %></li>
+	    <% else %>
+	      <li><%= link_to_unless_current 'Login', login_path %></li>
+	      <li><%= link_to_unless_current 'Sign Up', signup_path %></li>
+	    <% end%>
 	  </ul>
 	</section>
 	
