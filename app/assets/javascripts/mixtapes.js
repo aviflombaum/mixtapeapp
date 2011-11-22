@@ -1,7 +1,7 @@
 $(function(){
   $('form a.add-song').click('click', function() {
-    var content = $('#songs_fields_template').html();
-    var regexp  = new RegExp('new_songs', 'g');
+    var content = $('#playlists_fields_template').html();
+    var regexp  = new RegExp('new_playlists', 'g');
     var new_id  = new Date().getTime();
 
     $(this).before(content.replace(regexp, new_id)); 
@@ -14,6 +14,6 @@ $('form a.remove-song').live('click', function() {
   if(hidden_field) {
     hidden_field.value = '1';
   }
-  $(this).parents('.song.fields').hide();
+  $(this).parents('.playlist.fields').hide();
   return false;
 });

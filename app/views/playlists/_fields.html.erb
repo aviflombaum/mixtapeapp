@@ -1,0 +1,10 @@
+<div class="playlist fields">
+  <%= f.label :position %>
+  <%= f.number_field :position%>
+  
+  <%= f.fields_for :song, f.object.build_song do |s| %>
+    <div class="song fields">
+      <%= render 'songs/fields', :f => s, :remove_song => true %>
+    </div>
+  <% end %>
+</div>
