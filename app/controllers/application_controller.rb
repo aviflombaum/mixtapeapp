@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
       !!current_user
     end
     helper_method :logged_in?
+    
+    def log_in(user)
+      reset_session
+      session[:user_id] = user.id
+    end
+    
 end
