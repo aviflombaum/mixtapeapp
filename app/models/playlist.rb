@@ -4,5 +4,6 @@ class Playlist < ActiveRecord::Base
   
   validates :position, :uniqueness => {:scope => :mixtape_id}
   
-  accepts_nested_attributes_for :song
+  accepts_nested_attributes_for :song, :allow_destroy => true, :reject_if => lambda {|s| s[:audio].blank?}
+
 end

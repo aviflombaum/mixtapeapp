@@ -1,4 +1,13 @@
 Mixtapeapp::Application.routes.draw do
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
+  post 'sessions' => 'sessions#create'
+
+  resources :password_resets, :except => [:destroy, :index, :show]
+  
+  resources :users, :only => [:new, :create]
+
   resources :artists
 
   resources :songs

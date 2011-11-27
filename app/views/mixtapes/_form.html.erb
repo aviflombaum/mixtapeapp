@@ -21,8 +21,8 @@
     
     <% if @mixtape.new_record? %>
       <%= f.fields_for :playlists do |p| %>
-        <% render 'playlists/fields', :f => p %>
-      <% end %>
+        <%= render 'playlists/fields', :f => p %>
+      <% end %>    
     <% else %>
       <% @mixtape.playlists.order(:position).each_with_index do |playlist, index | %>
         <%= f.fields_for :playlists, playlist do |p| %>

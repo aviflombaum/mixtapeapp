@@ -9,12 +9,24 @@
 <body>
 
 <nav>
-  <section>
+  <section id="site">
   	<ul>
+  		<li><%= link_to_unless_current "Mixtapes", mixtapes_path %></li>		
   		<li><%= link_to_unless_current "Artists", artists_path %></li>
   		<li><%= link_to_unless_current "Songs", songs_path %></li>
-  		<li><%= link_to_unless_current "Mixtapes", mixtapes_path %></li>		
   	</ul>
+	</section>
+	
+	<section id="utility">
+	  <ul>
+	    <% if logged_in? %>
+	      <li>Logged in as: <%= current_user.username %></li>
+	      <li><%= link_to_unless_current 'Logout', logout_path %></li>
+	    <% else %>
+	      <li><%= link_to_unless_current 'Login', login_path %></li>
+	      <li><%= link_to_unless_current 'Sign Up', signup_path %></li>
+	    <% end%>
+	  </ul>
 	</section>
 	
 	<section id="submenu">
