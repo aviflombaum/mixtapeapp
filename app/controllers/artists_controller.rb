@@ -2,7 +2,7 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.json
   def index
-    @artists = Artist.all_or_search(params[:search])      
+    @artists = Artist.all_or_search(params[:search], :sort => params[:sort])      
 
     respond_to do |format|
       format.html # index.html.erb
