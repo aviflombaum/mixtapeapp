@@ -7,6 +7,6 @@
 <p>
   Starting with:
 <% ('a'..'z').each do |letter| %>
-  <%= link_to letter, artists_path(:search => letter) %>
-<%end %> <%= link_to "all", artists_path %>
+  <%= link_to letter, artists_path(params.except(:controller, :action).merge(:search => letter)) %>
+<%end %> <%= link_to "all", artists_path(params.except(:controller, :action, :search)) %>
 </p>
