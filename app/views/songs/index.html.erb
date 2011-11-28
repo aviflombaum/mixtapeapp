@@ -20,4 +20,6 @@
 
 <br />
 
-<%= link_to 'New Song', new_song_path %>
+<% content_for :submenu do %>
+  <%= link_to 'New Song', new_song_path %>
+<% end %>
