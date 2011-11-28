@@ -5,7 +5,8 @@
 
 <div class="field">
   <%= f.label :artist_name %><br />
-  <%= f.text_field :artist_name %>
+  <%#= f.text_field :artist_name %>
+  <%= f.select :artist_name, artist_names, :prompt => 'Select an artist' %>
 </div>
 
 <div class="field">

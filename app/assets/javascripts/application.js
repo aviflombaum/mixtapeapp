@@ -7,4 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require chosen.jquery.js
 //= require_tree .
