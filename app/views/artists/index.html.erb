@@ -1,5 +1,7 @@
 <h1>Listing artists</h1>
 
+<%= render 'search' %>
+
 <table>
   <tr>
     <th>Name</th>
@@ -20,4 +22,6 @@
 
 <br />
 
-<%= link_to 'New Artist', new_artist_path %>
+<% content_for :submenu do %>
+  <%= link_to 'New Artist', new_artist_path %>
+<% end %>

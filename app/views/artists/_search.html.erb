@@ -1,0 +1,12 @@
+<%= form_tag artists_path, :method => :get do %>
+  <%= label_tag :search %>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<p>
+  Starting with:
+<% ('a'..'z').each do |letter| %>
+  <%= link_to letter, artists_path(:search => letter) %>
+<%end %> <%= link_to "all", artists_path %>
+</p>
