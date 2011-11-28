@@ -1,8 +1,11 @@
 <h1>Listing artists</h1>
 
+<%= render 'search' %>
+
 <table>
   <tr>
-    <th>Name</th>
+    <th><%= link_to "Name", artists_path(params.except(:controller, :action).merge(:sort => 'name')) %></th>
+    <th><%= link_to "Song Count", artists_path(params.except(:controller, :action).merge(:sort => 'songs')) %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +14,7 @@
 <% @artists.each do |artist| %>
   <tr>
     <td><%= artist.name %></td>
+    <td><%= artist.songs_count %></td>    
     <td><%= link_to 'Show', artist %></td>
     <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
     <td><%= link_to 'Destroy', artist, confirm: 'Are you sure?', method: :delete %></td>
@@ -20,4 +24,6 @@
 
 <br />
 
-<%= link_to 'New Artist', new_artist_path %>
+<% content_for :submenu do %>
+  <%= link_to 'New Artist', new_artist_path %>
+<% end %>

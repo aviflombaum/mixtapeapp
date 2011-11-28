@@ -1,5 +1,7 @@
 <h1>Listing songs</h1>
 
+<%= will_paginate @songs %>
+
 <table>
   <tr>
     <th>Name</th>
@@ -20,4 +22,6 @@
 
 <br />
 
-<%= link_to 'New Song', new_song_path %>
+<% content_for :submenu do %>
+  <%= link_to 'New Song', new_song_path %>
+<% end %>
