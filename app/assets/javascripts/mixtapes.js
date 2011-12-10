@@ -9,9 +9,16 @@ $(function(){
   });  
   
   
-  $("#mixtape_song_names").tokenInput("/songs/search.json");
+  $("#mixtape_song_names").tokenInput("/songs/search.json", {
+    resultsFormatter: formatTokenAutoComplete,
+    tokenFormatter: formatTokenAutoComplete,
+  });
   
 })
+
+function formatTokenAutoComplete(item){
+  return "<li>" + item.artist_name + " - " + item.name + "</li>"
+}
 
 $('form a.remove-song').live('click', function() {
   var hidden_field = $(this).prev('input[type=hidden]')[0];

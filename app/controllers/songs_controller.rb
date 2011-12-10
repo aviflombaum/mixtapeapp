@@ -17,7 +17,10 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @songs }
+      format.json { 
+        render json: @songs.to_json(:only => [:id, :name], 
+                                    :methods => :artist_name) # n+1
+      }
     end    
   end
 
