@@ -9,6 +9,7 @@ class Artist < ActiveRecord::Base
   scope :by_name, order("name ASC")
   scope :by_songs_count, order("songs_count DESC") # all.sort{|a| a.songs.count}
   
+  include Concerns::Autocompleteable
   
   def self.names
     by_name.collect{|a| a.name}
@@ -31,7 +32,4 @@ class Artist < ActiveRecord::Base
     order(sort_sql)
   end
   
-  def self.starts_with(name)
-    self.where("name LIKE :search", :search => "#{name}%")
-  end
 end

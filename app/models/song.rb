@@ -10,6 +10,9 @@ class Song < ActiveRecord::Base
   # https://netfiles.uiuc.edu/xythoswfs/static/en/content_type.htm
   validates_attachment_presence :audio, :if => lambda {|s| s.audio.exists?}
   validates_attachment_content_type :audio, :content_type => /^audio/, :message => "must be an audio file"
+
+  # acts_as_autocomplete
+  include Concerns::Autocompleteable
   
   def artist_name
     self.artist.name if self.artist.present?

@@ -17,6 +17,8 @@ class Mixtape < ActiveRecord::Base
   
   before_create  { assign_playlist_position }
   
+  attr_reader :song_names
+  
   private
   
     def assign_playlist_position

@@ -10,7 +10,10 @@ Mixtapeapp::Application.routes.draw do
 
   resources :artists
 
-  resources :songs
+  resources :songs do
+    get 'search', :on => :collection
+    get 'play', :on => :member
+  end
 
   resources :mixtapes
 

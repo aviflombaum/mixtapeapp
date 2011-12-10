@@ -36,7 +36,11 @@
         <% end %>
       <% end %>
     <% end %>
-    <%= link_to('Add song', "javascript:void(0)", :class => "add-song") %>
+    
+    <%= f.text_field :song_names %>
+    
+    <p><%= link_to('Upload a new song', "javascript:void(0)", :class => "upload-song") %> or <%= link_to('choose an existing one', "javascript:void(0)", :class => "add-song") %></p>
+    
     
     <%= new_child_fields_template(f, :playlists) %>
   </fieldset>

@@ -1,5 +1,5 @@
 $(function(){
-  $('form a.add-song').click('click', function() {
+  $('form a.upload-song').click('click', function() {
     var content = $('#playlists_fields_template').html();
     var regexp  = new RegExp('new_playlists', 'g');
     var new_id  = new Date().getTime();
@@ -7,6 +7,10 @@ $(function(){
     $(this).before(content.replace(regexp, new_id)); 
     return false;
   });  
+  
+  
+  $("#mixtape_song_names").tokenInput("/songs/search.json");
+  
 })
 
 $('form a.remove-song').live('click', function() {
