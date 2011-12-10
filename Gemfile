@@ -19,6 +19,7 @@ end
 
 gem 'paperclip'
 gem 'will_paginate'
+gem "friendly_id", "~> 4.0.0.beta14"
 
 gem 'ruby-mp3info', :require => 'mp3info'
 # gem 'taglib-ruby', :require => 'taglib'

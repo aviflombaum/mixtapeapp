@@ -1,4 +1,7 @@
 class Mixtape < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+  
   has_many :playlists, :inverse_of => :mixtape
   has_many :songs, :through => :playlists
   

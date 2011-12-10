@@ -17,6 +17,10 @@ class MixtapesController < ApplicationController
   def show
     @mixtape = Mixtape.find(params[:id])
 
+    if request.path != mixtape_path(@mixtape)
+      return redirect_to @mixtape, :status => :moved_permanently
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mixtape }
