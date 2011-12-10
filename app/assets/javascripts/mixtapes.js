@@ -9,7 +9,7 @@ $(function(){
   });  
   
   
-  $("#mixtape_song_names").tokenInput("/songs/search.json", {
+  $("#mixtape_song_ids_to_add").tokenInput("/songs/search.json", {
     resultsFormatter: formatTokenAutoComplete,
     tokenFormatter: formatTokenAutoComplete,
   });

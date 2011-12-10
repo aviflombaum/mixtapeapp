@@ -15,12 +15,27 @@ class Mixtape < ActiveRecord::Base
   #   self.songs.build if self.songs.blank?
   # end
   
+  before_save { add_songs_by_ids }
   before_create  { assign_playlist_position }
   
-  attr_reader :song_names
+  attr_accessor :song_ids_to_add
+
+  # def song_ids_to_add=(ids_delimited)
+  #   songs_to_add = Song.find(ids_delimited.split(","))
+  #   songs_to_add.each do |song|
+  #     self.playlists.build(:song => song)
+  #   end
+  # end
   
   private
-  
+    def add_songs_by_ids
+      return if song_ids_to_add.blank?
+      songs_to_add = Song.find(self.song_ids_to_add.split(","))
+      songs_to_add.each do |song|
+        self.playlists.build(:song => song)
+      end
+    end
+    
     def assign_playlist_position
       self.playlists.each_with_index do |playlist, index|
         playlist.position ||= index+1
