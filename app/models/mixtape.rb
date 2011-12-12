@@ -35,6 +35,7 @@ class Mixtape < ActiveRecord::Base
   
   def add_user(user, permission)
     user_mixtapes.find_or_create_by_user_id(user.id).set_permission permission
+    # UserMailer.shared_mixtape(user, self).deliver
   end
   
   def editable_by?(user)
@@ -48,6 +49,10 @@ class Mixtape < ActiveRecord::Base
   def destroyable_by?(user)
     !!user_mixtapes.find_by_user_id(user).try(:destroyable?)
   end
+  
+  # def to_param
+  #   self.slug
+  # end
   
   private
     def add_songs_by_ids

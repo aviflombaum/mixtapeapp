@@ -10,4 +10,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail :to => user.email, :subject => "Password Reset"
   end
+  
+  def shared_mixtape(user, mixtape)
+    @mixtape = mixtape
+    @user = user
+    mail :to => user.email, :subject => "#{mixtape.name} mixtape has been shared with you!"
+  end
 end
