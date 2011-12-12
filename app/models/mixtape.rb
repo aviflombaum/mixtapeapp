@@ -1,4 +1,15 @@
 class Mixtape < ActiveRecord::Base
+  
+  # def self.authorize(*args)
+  #   args.each do |arg|
+  #     define_method :"#{arg}able_by?" do |user|
+  #       !!user_mixtapes.find_by_user_id(user).try(:"#{arg}able?")
+  #     end
+  #   end
+  # end
+  # 
+  # authorize :edit, :listen, :destroy
+  
   extend FriendlyId
   friendly_id :name, :use => :slugged
   
@@ -33,19 +44,18 @@ class Mixtape < ActiveRecord::Base
   #   end
   # end
   
-  def add_user(user, permission)
-    user_mixtapes.find_or_create_by_user_id(user.id).set_permission permission
+  def add_user(user, permission)  
     # UserMailer.shared_mixtape(user, self).deliver
   end
   
   def editable_by?(user)
     !!user_mixtapes.find_by_user_id(user).try(:editable?)
   end
-
+  
   def listenable_by?(user)
     !!user_mixtapes.find_by_user_id(user).try(:listenable?)
   end
-
+  
   def destroyable_by?(user)
     !!user_mixtapes.find_by_user_id(user).try(:destroyable?)
   end
@@ -68,4 +78,12 @@ class Mixtape < ActiveRecord::Base
         playlist.position ||= index+1
       end
     end
+    
+    # def method_missing(method, *args)
+    #   if method.match /able_by\?$/
+    #     user_mixtapes.find_by_user_id(args).try(:"#{method.to_s.match(/(.+)able_by\?$/)[1]}able?")
+    #   else
+    #     super
+    #   end
+    # end    
 end
