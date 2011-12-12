@@ -4,6 +4,8 @@ class UserMixtape < ActiveRecord::Base
   belongs_to :mixtape, :inverse_of => :user_mixtapes
   belongs_to :user, :inverse_of => :user_mixtapes
 
+  # after_create { send_share_notification }
+  
   def set_permission(permission)
     self.update_attributes({:permissions => Permissions[permission]})
   end
@@ -20,4 +22,8 @@ class UserMixtape < ActiveRecord::Base
     true if [Permissions[:owner], Permissions[:collaborator], Permissions[:listener]].include?(self.permissions)
   end
   
+  # private
+  #   def send_share_notifiaction
+  #     UserMailer.shared_mixtape(self.user, self.mixtape).deliver
+  #   end
 end
