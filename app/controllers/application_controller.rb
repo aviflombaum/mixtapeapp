@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
       session[:user_id] = user.id
     end
     
+    def current_user_can?(action, object)
+      if !current_user.send("can_#{action}?", object)
+        redirect_to root_url, :notice => "You are not authorized to #{action} #{object.name}"
+      end
+    end    
 end

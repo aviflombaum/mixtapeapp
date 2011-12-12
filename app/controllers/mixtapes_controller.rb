@@ -40,7 +40,8 @@ class MixtapesController < ApplicationController
 
   # GET /mixtapes/1/edit
   def edit
-    @mixtape = current_user.mixtapes.find(params[:id])
+    @mixtape = Mixtape.find(params[:id])
+    current_user_can? :edit, @mixtape
   end
 
   # POST /mixtapes

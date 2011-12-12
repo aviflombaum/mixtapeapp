@@ -33,6 +33,14 @@ class Mixtape < ActiveRecord::Base
   #   end
   # end
   
+  def add_user(user, permission)
+    user_mixtapes.find_or_create_by_user_id(user).set_permission permission
+  end
+  
+  def editable_by?(user)
+    !!user_mixtapes.find_by_user_id(user).try(:editable?)
+  end
+  
   private
     def add_songs_by_ids
       return if song_ids_to_add.blank?
