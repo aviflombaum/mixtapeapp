@@ -1,6 +1,6 @@
 class MixtapesController < ApplicationController
-  before_filter :login_required, :only => [:show]
-
+  before_filter :login_required, :except => [:index]
+  
   # GET /mixtapes
   # GET /mixtapes.json
   def index
@@ -30,8 +30,8 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/new
   # GET /mixtapes/new.json
   def new
-    @mixtape = Mixtape.new(:playlists => [Playlist.new])
-    
+    @mixtape = current_user.mixtapes.build(:playlists => [Playlist.new])
+    debugger
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @mixtape }
@@ -46,8 +46,8 @@ class MixtapesController < ApplicationController
   # POST /mixtapes
   # POST /mixtapes.json
   def create
-    @mixtape = Mixtape.new(params[:mixtape])
-    
+    @mixtape = current_user.mixtapes.build(params[:mixtape])
+    debugger
     respond_to do |format|
       if @mixtape.save
         format.html { redirect_to @mixtape, notice: 'Mixtape was successfully created.' }

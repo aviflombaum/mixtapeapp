@@ -4,6 +4,9 @@ class Mixtape < ActiveRecord::Base
   
   has_many :playlists, :inverse_of => :mixtape
   has_many :songs, :through => :playlists
+
+  has_many :user_mixtapes, :inverse_of => :mixtape
+  has_many :users, :through => :user_mixtapes
   
   validates_presence_of :name
 
