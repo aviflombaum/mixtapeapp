@@ -1,10 +1,10 @@
 class MixtapesController < ApplicationController
-  before_filter :login_required, :except => [:index]
+  before_filter :login_required
   
   # GET /mixtapes
   # GET /mixtapes.json
   def index
-    @mixtapes = Mixtape.all
+    @mixtapes = current_user.mixtapes
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/1
   # GET /mixtapes/1.json
   def show
-    @mixtape = Mixtape.find(params[:id])
+    @mixtape = current_user.mixtapes.find(params[:id])
 
     if request.path != mixtape_path(@mixtape)
       return redirect_to @mixtape, :status => :moved_permanently
@@ -31,7 +31,7 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/new.json
   def new
     @mixtape = current_user.mixtapes.build(:playlists => [Playlist.new])
-    debugger
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @mixtape }
@@ -40,14 +40,14 @@ class MixtapesController < ApplicationController
 
   # GET /mixtapes/1/edit
   def edit
-    @mixtape = Mixtape.find(params[:id])
+    @mixtape = current_user.mixtapes.find(params[:id])
   end
 
   # POST /mixtapes
   # POST /mixtapes.json
   def create
     @mixtape = current_user.mixtapes.build(params[:mixtape])
-    debugger
+
     respond_to do |format|
       if @mixtape.save
         format.html { redirect_to @mixtape, notice: 'Mixtape was successfully created.' }
@@ -62,8 +62,7 @@ class MixtapesController < ApplicationController
   # PUT /mixtapes/1
   # PUT /mixtapes/1.json
   def update
-    @mixtape = Mixtape.find(params[:id])
-    
+    @mixtape = current_user.mixtapes.find(params[:id])
     
     respond_to do |format|
       if @mixtape.update_attributes(params[:mixtape])
@@ -79,7 +78,7 @@ class MixtapesController < ApplicationController
   # DELETE /mixtapes/1
   # DELETE /mixtapes/1.json
   def destroy
-    @mixtape = Mixtape.find(params[:id])
+    @mixtape = current_user.mixtapes.find(params[:id])
     @mixtape.destroy
 
     respond_to do |format|
