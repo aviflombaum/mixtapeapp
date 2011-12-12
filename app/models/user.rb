@@ -14,10 +14,6 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
   
-  def can_edit?(object)
-    object.editable_by?(self)
-  end
-  
   private
   def generate_token(column)
     begin

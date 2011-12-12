@@ -4,7 +4,7 @@ class MixtapesController < ApplicationController
   # GET /mixtapes
   # GET /mixtapes.json
   def index
-    @mixtapes = current_user.mixtapes
+    @mixtapes = Mixtape.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,8 +15,9 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/1
   # GET /mixtapes/1.json
   def show
-    @mixtape = current_user.mixtapes.find(params[:id])
-
+    @mixtape = Mixtape.find(params[:id])
+    current_user_can? :listen, @mixtape
+    
     if request.path != mixtape_path(@mixtape)
       return redirect_to @mixtape, :status => :moved_permanently
     end
@@ -63,7 +64,8 @@ class MixtapesController < ApplicationController
   # PUT /mixtapes/1
   # PUT /mixtapes/1.json
   def update
-    @mixtape = current_user.mixtapes.find(params[:id])
+    @mixtape = Mixtape.find(params[:id])
+    current_user_can? :edit, @mixtape
     
     respond_to do |format|
       if @mixtape.update_attributes(params[:mixtape])
@@ -79,8 +81,12 @@ class MixtapesController < ApplicationController
   # DELETE /mixtapes/1
   # DELETE /mixtapes/1.json
   def destroy
-    @mixtape = current_user.mixtapes.find(params[:id])
-    @mixtape.destroy
+    @mixtape = Mixtape.find(params[:id])
+
+    return if !current_user_can? :destroy, @mixtape
+
+    @mixtape.destroy 
+      
 
     respond_to do |format|
       format.html { redirect_to mixtapes_url }

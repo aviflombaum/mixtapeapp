@@ -23,10 +23,24 @@ class ApplicationController < ActionController::Base
       reset_session
       session[:user_id] = user.id
     end
-    
+
     def current_user_can?(action, object)
-      if !current_user.send("can_#{action}?", object)
-        redirect_to root_url, :notice => "You are not authorized to #{action} #{object.name}"
+      allowed = case action
+        when :edit
+          object.editable_by? current_user
+        when :destroy
+          object.destroyable_by? current_user
+        when :listen
+          object.listenable_by? current_user
       end
-    end    
+      
+      redirect_to root_url, 
+        :notice => "You are not authorized to #{action} #{object.name}" and return if !allowed
+    end
+        
+    # def current_user_can?(action, object)
+    #   if !object.send("#{action}able_by?", current_user)
+    #     redirect_to root_url, :notice => "You are not authorized to #{action} #{object.name}"
+    #   end
+    # end    
 end

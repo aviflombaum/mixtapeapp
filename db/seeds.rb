@@ -41,7 +41,12 @@
 
     if @mixtape.save
       @mixtape.add_user(user, :owner)
-      
+            
+      (users-[user]).each do |u| 
+        puts "Addin #{u.username} to #{@mixtape.name} as a listener"
+        @mixtape.add_user(u, :listener) 
+      end
+        
       puts "#{@mixtape.name} created with #{@songs.count} songs." 
     else
       puts "Could not save mixtape because\n"
