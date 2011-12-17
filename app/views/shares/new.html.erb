@@ -1,0 +1,15 @@
+<h1>New mixtape</h1>
+
+<%= form_tag(mixtape_shares_path(@mixtape), :id => 'share_mixtape', :remote => true) do %>
+  <div class="field">
+    <%= label_tag "Username" %><br />
+    <%= text_field_tag :user_id %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Share" %>
+  </div>
+<% end %>
+
+<% content_for :submenu do %>
+  <%= link_to 'Back', mixtape_path(@mixtape) %>
+<% end %>
