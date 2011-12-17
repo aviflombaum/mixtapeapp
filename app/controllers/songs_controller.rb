@@ -6,7 +6,8 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @songs }
+      format.json {render :json => {:html => (render_to_string :partial => 'songs/song_tr.html', :collection => @songs, :as => :song)}}
+      # index.json.erb
     end
   end
   
