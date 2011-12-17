@@ -1,1 +1,1 @@
-# require 'autocompleteable'
+require 'autocompleteable'

@@ -6,5 +6,6 @@
  *= require chosen.css
  *= require fancybox.jquery.css
  *= require token-input.css 
+ *= require jquery-ui-theme/jquery-ui-1.8.16.custom.css
  *= require_tree . 
 */

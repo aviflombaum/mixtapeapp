@@ -12,7 +12,8 @@ class Song < ActiveRecord::Base
   validates_attachment_content_type :audio, :content_type => /^audio/, :message => "must be an audio file"
 
   # acts_as_autocomplete
-  include Concerns::Autocompleteable
+  # include Concerns::Autocompleteable
+  acts_as_autocomplete
   
   def artist_name
     self.artist.name if self.artist.present?

@@ -6,7 +6,7 @@ Mixtapeapp::Application.routes.draw do
 
   resources :password_resets, :except => [:destroy, :index, :show]
   
-  resources :users, :only => [:new, :create]
+  resources :users, :only => [:new, :create, :index]
 
   resources :artists
 

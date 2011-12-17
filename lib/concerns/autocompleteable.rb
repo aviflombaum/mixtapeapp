@@ -63,24 +63,24 @@
 # end
 
 # The Rails 3 Pattern
-module Concerns::Autocompleteable
-  # To be used in AR class via include Concerns::Autocompleteable
-  
-  extend ActiveSupport::Concern
-      
-  module ClassMethods
-    def starts_with(name)
-      self.where("name LIKE :search", :search => "#{name}%")
-    end
-  end
-  
-  module InstanceMethods
-    def more_like(increment = 3)
-      starting_with = self.name[0..2]
-      self.class.starts_with(starting_with)
-    end
-  end
-end
+# module Concerns::Autocompleteable
+#   # To be used in AR class via include Concerns::Autocompleteable
+#   
+#   extend ActiveSupport::Concern
+#       
+#   module ClassMethods
+#     def starts_with(name, column = :name) # add column, default options
+#       self.where("#{column} LIKE :search", :search => "#{name}%")
+#     end
+#   end
+#   
+#   module InstanceMethods
+#     def more_like(increment = 3)
+#       starting_with = self.name[0..2]
+#       self.class.starts_with(starting_with)
+#     end
+#   end
+# end
 
 # The acts_as plugin pattern
 # module Concerns
