@@ -2,6 +2,7 @@ class SharesController < ApplicationController
   
   def new
     @mixtape = Mixtape.find(params[:mixtape_id])
+    render :layout => false if request.xhr?
   end
   
   def create

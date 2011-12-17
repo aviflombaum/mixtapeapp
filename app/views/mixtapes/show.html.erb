@@ -13,7 +13,7 @@
 </p>
 
 <% content_for :submenu do %>
-  <%= link_to 'Share', new_mixtape_shares_path(@mixtape) %> |
+  <%= link_to 'Share', new_mixtape_shares_path(@mixtape), :class => 'share' %> |
   <%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
   <%= link_to 'Back', mixtapes_path %>
 <% end %>

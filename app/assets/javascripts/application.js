@@ -8,5 +8,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require chosen.jquery.js
+//= require fancybox.jquery.js
 //= require tokeninput.jquery.js
 //= require_tree .
