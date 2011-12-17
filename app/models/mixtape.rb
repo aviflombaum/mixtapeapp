@@ -45,7 +45,7 @@ class Mixtape < ActiveRecord::Base
   # end
   
   def add_user(user, permission)  
-    # UserMailer.shared_mixtape(user, self).deliver
+    user_mixtapes.create(:user => user).set_permission permission
   end
   
   def editable_by?(user)

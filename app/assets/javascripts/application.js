@@ -8,5 +8,16 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require chosen.jquery.js
+//= require fancybox.jquery.js
 //= require tokeninput.jquery.js
 //= require_tree .
+
+$(function(){
+  $("div.pagination a").click(function(e){
+    $.getJSON($(this).attr("href"), function(json){
+      $("table").html(json.html)
+    });
+    
+    e.preventDefault();
+  });
+})

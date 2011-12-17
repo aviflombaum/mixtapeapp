@@ -27,7 +27,7 @@
   @songs = Importers::Songs.new_from_dir("#{Rails.root}/db/seed/songs")
   
   users.each do |user|
-    @mixtape = user.mixtapes.build(:name => "#{user.username}'s Favorite Songs")
+    @mixtape = Mixtape.new(:name => "#{user.username}'s Favorite Songs")
 
     puts "Initialized Mixtape - #{@mixtape.name}..."
 

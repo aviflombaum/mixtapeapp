@@ -6,7 +6,7 @@ Mixtapeapp::Application.routes.draw do
 
   resources :password_resets, :except => [:destroy, :index, :show]
   
-  resources :users, :only => [:new, :create]
+  resources :users, :only => [:new, :create, :index]
 
   resources :artists
 
@@ -15,7 +15,9 @@ Mixtapeapp::Application.routes.draw do
     get 'play', :on => :member
   end
 
-  resources :mixtapes
+  resources :mixtapes do
+    resource :shares, :only => [:new, :create]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

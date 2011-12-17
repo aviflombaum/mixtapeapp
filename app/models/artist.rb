@@ -9,7 +9,8 @@ class Artist < ActiveRecord::Base
   scope :by_name, order("name ASC")
   scope :by_songs_count, order("songs_count DESC") # all.sort{|a| a.songs.count}
   
-  include Concerns::Autocompleteable
+  # include Concerns::Autocompleteable
+  acts_as_autocomplete
   
   def self.names
     by_name.collect{|a| a.name}
