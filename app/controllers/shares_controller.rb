@@ -9,6 +9,9 @@ class SharesController < ApplicationController
     @mixtape = Mixtape.find(params[:mixtape_id])
     @user = User.find(params[:user_id])
     @mixtape.add_user(@user, :listener)
-    redirect_to mixtape_url(@mixtape), :notice => "Shared mixtape with #{@user.username}"
+    respond_to do |f|
+      f.html {redirect_to mixtape_url(@mixtape), :notice => "Shared mixtape with #{@user.username}"}
+      f.js 
+    end
   end
 end

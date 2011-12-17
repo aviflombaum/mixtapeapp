@@ -4,5 +4,12 @@ $(function(){
       $.fancybox(html);      
     });
     e.preventDefault();
-  });  
+  });
+  
+  // $("form#share_mixtape").live('submit', function(e){
+  //   $.post($(this).attr("action"), $(this).serialize(), function(response){
+  //     // setTimeout(function(){$.fancybox.close()}, 1800);
+  //   }, 'script');
+  //   e.preventDefault();
+  // })
 });
