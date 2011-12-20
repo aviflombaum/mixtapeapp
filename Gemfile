@@ -26,6 +26,8 @@ gem 'ruby-mp3info', :require => 'mp3info'
 
 gem 'jquery-rails'
 
+gem 'omniauth-twitter'
+
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'ruby-debug19', :require => 'ruby-debug'

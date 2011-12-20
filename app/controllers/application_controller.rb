@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   private
+    def auth_hash
+      request.env['omniauth.auth']
+    end
+    helper_method :auth_hash
+    
     def login_required
       unless logged_in?
         session[:back_to] = request.url
