@@ -3,7 +3,7 @@ class CreatePlaylists < ActiveRecord::Migration
     create_table :playlists do |t|
       t.references :mixtape
       t.references :song
-      t.timestamps
+      t.timestamps      
     end
   end
 end
