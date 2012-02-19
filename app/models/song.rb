@@ -3,4 +3,8 @@ class Song < ActiveRecord::Base
 
   has_many :playlists
   has_many :mixtapes, :through => :playlists
+  
+  has_many :genrefications
+  has_many :genres, :through => :genrefications
+  
 end
