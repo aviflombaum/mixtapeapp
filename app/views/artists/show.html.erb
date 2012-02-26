@@ -5,6 +5,11 @@
   <%= @artist.name %>
 </p>
 
+<ul>
+<% @songs.each do |song| %>
+  <li><%= link_to song.name, song %>
+<% end %>
+</ul>
 
 <%= link_to 'Edit', edit_artist_path(@artist) %> |
 <%= link_to 'Back', artists_path %>

@@ -40,8 +40,11 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.json
   def create
+    
+    # @song.artist = params[:song][:artist] #=> {:name => "Test"}
+    
     @song = Song.new(params[:song])
-
+      
     respond_to do |format|
       if @song.save
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
@@ -80,4 +83,5 @@ class SongsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

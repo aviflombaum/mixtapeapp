@@ -5,6 +5,14 @@
   <%= @song.name %>
 </p>
 
+<% if @song.artist.present? %>
+<p>
+  <b>Artist:</b>
+  <%= link_to @song.artist.name, @song.artist %>
+</p>
+<% end %>
+
+<%= link_to @song.audio.original_filename, @song.audio.url %>
 
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>

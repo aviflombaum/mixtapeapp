@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
   # GET /artists.json
   def index
     @artists = Artist.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @artists }
@@ -14,7 +14,8 @@ class ArtistsController < ApplicationController
   # GET /artists/1.json
   def show
     @artist = Artist.find(params[:id])
-
+    @songs = @artist.songs
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @artist }
