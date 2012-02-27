@@ -7,14 +7,7 @@ class Song < ActiveRecord::Base
   has_many :genrefications
   has_many :genres, :through => :genrefications
   
-  has_attached_file :audio
-  
-  # accepts_nested_attributes_for :artist
-  
-  # def artist=(hash)
-  #   self.artist = Artist.find_or_create_by_name(hash[:name])
-  # end
-  
+  has_attached_file :audio  
   # before_save :set_genre_ids
 
   def artist_name
