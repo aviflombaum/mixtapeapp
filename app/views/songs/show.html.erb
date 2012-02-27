@@ -12,13 +12,18 @@
 </p>
 <% end %>
 
-<ul>
-<% @song.genres.each do |genre| %>
-  <li><%= link_to genre.name, genre %></li>
-<% end%>
-</ul>
+<p>
+  <b>Genres:</b>
+  <ul>
+  <% @song.genres.each do |genre| %>
+    <li><%= link_to genre.name, genre %></li>
+  <% end%>
+  </ul>
+</p>
 
-<%= link_to @song.audio.original_filename, @song.audio.url %>
+<p>
+  <b>Download:</b> <%= link_to @song.audio.original_filename, @song.audio.url %>
+</p>
 
 <%= link_to 'Edit', edit_song_path(@song) %> |
 <%= link_to 'Back', songs_path %>
