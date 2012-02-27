@@ -12,6 +12,12 @@
 </p>
 <% end %>
 
+<ul>
+<% @song.genres.each do |genre| %>
+  <li><%= link_to genre.name, genre %></li>
+<% end%>
+</ul>
+
 <%= link_to @song.audio.original_filename, @song.audio.url %>
 
 <%= link_to 'Edit', edit_song_path(@song) %> |

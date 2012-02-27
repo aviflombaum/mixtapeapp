@@ -15,6 +15,8 @@ class Song < ActiveRecord::Base
   #   self.artist = Artist.find_or_create_by_name(hash[:name])
   # end
   
+  # before_save :set_genre_ids
+
   def artist_name
     self.artist.name if self.artist.present?
   end
@@ -23,5 +25,9 @@ class Song < ActiveRecord::Base
   def artist_name=(name)
     self.artist = Artist.find_or_create_by_name name
   end
+
+  # def set_genre_ids
+  #   self.genre_ids ||= []
+  # end
   
 end

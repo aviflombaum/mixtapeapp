@@ -6,10 +6,18 @@
 </p>
 
 <p>
-  <b>Name:</b>
+  <b>Description:</b>
   <%= @mixtape.description %>
 </p>
 
+<p>
+  <b>Songs</b>
+  <ol>
+    <% @mixtape.songs.each do |song| %>
+    <li><%= link_to song.artist_name, song.artist %> - <%= link_to song.audio.original_filename, song.audio.url %></li>
+    <% end %>
+  </ol>
+</p>
 
 <%= link_to 'Edit', edit_mixtape_path(@mixtape) %> |
 <%= link_to 'Back', mixtapes_path %>

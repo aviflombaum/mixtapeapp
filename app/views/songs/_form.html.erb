@@ -1,73 +1,31 @@
 <h2>Song Form</h2>
-
-<!-- <form action="/songs" method="post">
-  <input type="text" name="name">
-  
-  <input type="submit">
-</form> -->
-
-<%#= form_tag(songs_path, {:method => :post, :class => "new_song"}) do %>
-
-  <%#= text_field_tag(:name, @song.name, {:class => "test"})%>
-  
-
-  
-  <%#= submit_tag %>
-<%# end %>
-
 <%= form_for(@song, :html => {:class => "custom_class"}) do |f| %>
   <p>
-    <%= f.label :name %>
+    <%= f.label :name %><br />
     <%= f.text_field :name %> 
   </p>
  
- 
   <p>
-      <%= f.label :artist_name %>
-      <%= f.text_field :artist_name %>      
-
-    
-    <%#= f.label :artist_name %>
-    
-    <!-- <input type="text" name="song[artist_name]" value="<#%= @song.artist_name %>" id="song_artist_name"> -->
-    
-    <%#= text_field_tag 'song[artist_name]', @song.artist_name, :id => "song_artist_name" %>
-    
-    <%#= text_field(:song, :artist_name) %>
-    
-    <%#= f.text_field :artist_name %>
+    <%= f.label :artist_name %><br />
+    <%= f.text_field :artist_name %>      
   </p>
 
-  <!-- <select name="song_genres]"> -->
-    <%# Genre.all.each do |genre| %>
-      <!-- <option value="<%#= genre.id %>"><%#= genre.name %></option> -->
-    <%# end %>
-  <!-- </select> -->  
   <p>
-    <%= f.label :genres%>
-    <%#= #collection_select(:song, :genres, Genre.all, :id, :name)%>
-    <%#= f.select(:genre_ids, genres_for_select, :multiple => true )%>
+    <%= f.label :genres%><br />
     
     <% Genre.all.each do |genre| %>
       <p>
         <%= genre.name %>
-        <input type="checkbox" value="<%= genre.id %>" name="song[genre_ids][]" <%= "checked=checked" if @song.genre_ids.include?(genre.id)%>>
+        <%= check_box_tag('song[genre_ids][]', genre.id, @song.genres.include?(genre)) %>
       </p>
     <% end%>
+
   </p>
 
   <p>
-    <%= f.label :audio%>
-    <%#= #collection_select(:song, :genres, Genre.all, :id, :name)%>
+    <%= f.label :audio%><br />
     <%= f.file_field :audio%>
   </p>
 
-  <%= submit_tag %>
+  <%= f.submit %>
 <% end %>
-
-
-
-<!-- <form accept-charset="UTF-8" action="/songs" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="YvxEq4EAbkb2YSkSkFXkENeuY7sOfTGhLrHXP2HLLa0=" /></div>
-  <input id="name" name="name" type="text" />
-  <input name="commit" type="submit" value="Save changes" />
-</form> -->

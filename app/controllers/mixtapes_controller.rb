@@ -25,7 +25,8 @@ class MixtapesController < ApplicationController
   # GET /mixtapes/new.json
   def new
     @mixtape = Mixtape.new
-
+    @songs = @mixtape.songs.build
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @mixtape }
@@ -40,8 +41,14 @@ class MixtapesController < ApplicationController
   # POST /mixtapes
   # POST /mixtapes.json
   def create
+    # Seperate Scopes
+    # @mixtape = Mixtape.new(params[:mixtape])
+    # @song = @mixtape.songs.build(params[:song])
+    
+    # nested_attributes / fields_for
     @mixtape = Mixtape.new(params[:mixtape])
 
+    
     respond_to do |format|
       if @mixtape.save
         format.html { redirect_to @mixtape, notice: 'Mixtape was successfully created.' }

@@ -39,12 +39,10 @@ class SongsController < ApplicationController
 
   # POST /songs
   # POST /songs.json
-  def create
-    
-    # @song.artist = params[:song][:artist] #=> {:name => "Test"}
-    
+  def create    
+    params[:song][:genre_ids] ||= []
     @song = Song.new(params[:song])
-      
+
     respond_to do |format|
       if @song.save
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
@@ -60,7 +58,8 @@ class SongsController < ApplicationController
   # PUT /songs/1.json
   def update
     @song = Song.find(params[:id])
-
+    params[:song][:genre_ids] ||= []
+    
     respond_to do |format|
       if @song.update_attributes(params[:song])
         format.html { redirect_to @song, notice: 'Song was successfully updated.' }
