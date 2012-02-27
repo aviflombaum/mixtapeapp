@@ -13,9 +13,7 @@
 <p>
   <b>Songs</b>
   <ol>
-    <% @mixtape.songs.each do |song| %>
-    <li><%= link_to song.artist_name, song.artist %> - <%= link_to song.name, song %></li>
-    <% end %>
+    <%= render @mixtape.songs %>
   </ol>
 </p>
 

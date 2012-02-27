@@ -1,31 +1,6 @@
 <h2>Song Form</h2>
 <%= form_for(@song, :html => {:class => "custom_class"}) do |f| %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %> 
-  </p>
- 
-  <p>
-    <%= f.label :artist_name %><br />
-    <%= f.text_field :artist_name %>      
-  </p>
-
-  <p>
-    <%= f.label :genres%><br />
-    
-    <% Genre.all.each do |genre| %>
-      <p>
-        <%= genre.name %>
-        <%= check_box_tag('song[genre_ids][]', genre.id, @song.genres.include?(genre)) %>
-      </p>
-    <% end%>
-
-  </p>
-
-  <p>
-    <%= f.label :audio%><br />
-    <%= f.file_field :audio%>
-  </p>
+  <%= render 'fields', :f => f %>
 
   <%= f.submit %>
 <% end %>

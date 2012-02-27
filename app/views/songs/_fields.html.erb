@@ -1,0 +1,26 @@
+<p>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %> 
+</p>
+
+<p>
+  <%= f.label :artist_name %><br />
+  <%= f.text_field :artist_name %>      
+</p>
+
+<p>
+  <%= f.label :genres%><br />
+  
+  <% Genre.all.each do |genre| %>
+    <p>
+      <%= genre.name %>
+      <%= check_box_tag('song[genre_ids][]', genre.id, f.object.genres.include?(genre)) %>
+    </p>
+  <% end%>
+
+</p>
+
+<p>
+  <%= f.label :audio%><br />
+  <%= f.file_field :audio%>
+</p>

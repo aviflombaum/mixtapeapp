@@ -22,32 +22,7 @@
   </div>
 
   <%= f.fields_for :songs, @songs do |s| %>
-  <div class="field">
-    <%= s.label :name, 'Song Name' %> <br />
-    <%= s.text_field :name %>
-  </div>
-
-    <div class="field">
-      <%= s.label :artist_name, 'Artist Name' %> <br />
-      <%= s.text_field :artist_name %>
-    </div>
-
-    <div class="field">
-      <%= s.label :audio, 'Audio' %> <br />
-      <%= s.file_field :audio %>
-    </div>
-    
-    <p>
-      <%= s.label :genres%><br />
-
-      <% Genre.all.each do |genre| %>
-        <p>
-          <%= genre.name %>
-          <%= check_box_tag('mixtape[songs_attributes][0][genre_ids][]', genre.id) %>
-        </p>
-      <% end%>
-    </p>
-    
+    <%= render 'songs/fields', :f => s %>
   <% end %>
   
   <div class="actions">

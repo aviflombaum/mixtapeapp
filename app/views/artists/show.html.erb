@@ -5,11 +5,26 @@
   <%= @artist.name %>
 </p>
 
-<ul>
-<% @songs.each do |song| %>
-  <li><%= link_to song.name, song %>
-<% end %>
-</ul>
+<p>
+  <b>Songs</b>
 
-<%= link_to 'Edit', edit_artist_path(@artist) %> |
-<%= link_to 'Back', artists_path %>
+  <ul>
+  <%# @artist.songs.each do |song| %>
+    <%#= render :partial => 'songs/song', :locals => {:song => song} %>
+    <%#= render 'songs/song', {:song => song} %>
+
+    <%#= render song %>
+  <%# end %>
+
+  <%#= render :partial => 'songs/song', :collection => @artist.songs %>
+  <%= render @artist.songs %>
+  
+  <%#= render :partial => 'songs/song', :collection => @songs,
+             :as => :item, :locals => {:title => "#{@artist.name}'s Songs"} %>
+  </ul>
+</p>
+
+<% content_for :submenu do %>
+  <%= link_to 'Edit', edit_artist_path(@artist) %> |
+  <%= link_to 'Back', artists_path %>
+<% end %>
