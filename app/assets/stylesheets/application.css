@@ -6,18 +6,3 @@
  *= require_tree . 
 */
 
-/* Navigation */
-body {margin: 0;}
-
-nav {background: image-url("logos/mixtape.png") #000 no-repeat; height: 28px;}
-nav ul {margin: 0; padding: 5px 8px 4px 52px; list-style: none;}
-nav ul li {margin-right: 8px; float: left;}
-nav ul li a {color: #FFF !important; text-decoration: none;}
-nav ul li a:hover {color: #666 !important; text-decoration: underline;} 
-
-nav section#site {float: left;}
-nav section#utility {float: right;}
-
-nav section#submenu {margin: 8px 14px; clear: both; float: right;}
-
-section#content {margin: 2px 8px;  float: left;}
