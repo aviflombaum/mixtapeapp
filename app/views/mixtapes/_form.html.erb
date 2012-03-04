@@ -20,9 +20,10 @@
     <%= f.label :description, "Describe the mixtape"  %><br />
     <%= f.text_area :description %>
   </div>
-
-  <%= f.fields_for :songs, @songs do |s| %>
-    <%= render 'songs/fields', :f => s %>
+  
+  <% @mixtape.songs.build %>
+  <%= f.fields_for :songs, @mixtape.songs do |s| %>
+    <%= render 'songs/fields', :f => s, :form_scope => 'mixtape[song_attributes][0]' %>
   <% end %>
   
   <div class="actions">

@@ -11,12 +11,11 @@
   <ul>
   <%# @artist.songs.each do |song| %>
     <%#= render :partial => 'songs/song', :locals => {:song => song} %>
-    <%#= render 'songs/song', {:song => song} %>
+    <%#= render song %> 
+  <%#  end %>
 
-    <%#= render song %>
-  <%# end %>
-
-  <%#= render :partial => 'songs/song', :collection => @artist.songs %>
+  <%##= render :partial => 'songs/song', :collection => @artist.songs, :as => :song %>
+  
   <%= render @artist.songs %>
   
   <%#= render :partial => 'songs/song', :collection => @songs,

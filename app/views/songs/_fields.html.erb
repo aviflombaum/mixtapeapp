@@ -1,3 +1,6 @@
+<%
+ form_scope ||= 'song' #=> 'mixtape[song_attributes][0]
+%>
 <p>
   <%= f.label :name %><br />
   <%= f.text_field :name %> 
@@ -14,7 +17,7 @@
   <% Genre.all.each do |genre| %>
     <p>
       <%= genre.name %>
-      <%= check_box_tag('song[genre_ids][]', genre.id, f.object.genres.include?(genre)) %>
+      <%= check_box_tag("#{form_scope}[genre_ids][]", genre.id, f.object.genres.include?(genre)) %>
     </p>
   <% end%>
 
