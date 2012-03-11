@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  private
-  
+  private  
     def login_required
       unless logged_in?
         session[:back_to] = request.url
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
     helper_method :current_user
-  
+    
     def logged_in?
       !!current_user
     end

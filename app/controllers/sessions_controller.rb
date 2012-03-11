@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     
     redirect_to root_url, :notice => "Logged out!"
   end
-  
+
   private    
     def create_user_session(user, opts = {})
       back_to = session[:back_to] || opts[:redirect] || root_url

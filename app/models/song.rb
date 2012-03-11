@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  belongs_to :artist
+  belongs_to :artist, :counter_cache => true
 
   has_many :playlists
   has_many :mixtapes, :through => :playlists

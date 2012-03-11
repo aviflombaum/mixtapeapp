@@ -2,7 +2,9 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    params[:page] ||= 1
+    
+    @songs = Song.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

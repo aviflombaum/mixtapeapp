@@ -1,8 +1,22 @@
 <h1>Listing artists</h1>
 
+<%= form_tag artists_path, :method => :get do %>
+  <%= label_tag :search %>
+  <%= text_field_tag :search %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<p>
+  Starting with:
+<% ('a'..'z').each do |letter| %>
+  <%= link_to letter, artists_path(:search => letter) %>
+<%end %> <%= link_to "all", artists_path %>
+</p>
+
 <table>
   <tr>
-    <th>Name</th>
+    <th><%= link_to "Name", artists_path(params.merge(:sort => "name")) %></th>
+    <th><%= link_to "Songs Count", artists_path(params.merge(:sort => "songs_count")) %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +25,7 @@
 <% @artists.each do |artist| %>
   <tr>
     <td><%= artist.name %></td>
+    <td><%= artist.songs_count %></td>
     <td><%= link_to 'Show', artist %></td>
     <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
     <td><%= link_to 'Destroy', artist, confirm: 'Are you sure?', method: :delete %></td>
