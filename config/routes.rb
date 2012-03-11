@@ -1,4 +1,11 @@
 Mixtapeapp::Application.routes.draw do
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
+  post 'sessions' => 'sessions#create'
+
+  resources :users, :except => [:show, :destroy]
+
   resources :genres
 
   resources :artists
@@ -6,6 +13,8 @@ Mixtapeapp::Application.routes.draw do
   resources :songs
 
   resources :mixtapes
+
+  root :to => 'mixtapes#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

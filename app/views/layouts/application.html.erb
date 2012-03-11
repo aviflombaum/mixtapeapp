@@ -17,7 +17,17 @@
     	</ul>
   	</section>
 
-
+  	<section id="utility">
+  	  <ul>
+  	    <% if logged_in? %>
+  	      <li>Logged in as: <%= current_user.email %></li>
+  	      <li><%= link_to_unless_current 'Logout', logout_path %></li>
+  	    <% else %>
+  	      <li><%= link_to_unless_current 'Login', login_path %></li>
+  	      <li><%= link_to_unless_current 'Sign Up', signup_path %></li>
+  	    <% end%>
+  	  </ul>
+  	</section>
 
   	<section id="submenu">
   	  <%= yield :submenu %>

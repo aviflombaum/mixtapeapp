@@ -1,4 +1,6 @@
 class MixtapesController < ApplicationController
+  before_filter :login_required
+  
   # GET /mixtapes
   # GET /mixtapes.json
   def index
