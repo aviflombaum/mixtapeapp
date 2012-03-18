@@ -23,5 +23,11 @@ class ApplicationController < ActionController::Base
       reset_session
       session[:user_id] = user.id
     end
-  
+    
+    def current_user_can?(action, object)            
+      if !object.send(:"#{action}able_by?", current_user)
+        redirect_to(object, :notice => "Unauthorized") and return
+      end
+    end
+    helper_method :current_user_can?
 end

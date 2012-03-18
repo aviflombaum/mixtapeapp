@@ -111,3 +111,31 @@
 # end
 # 
 # ActiveRecord::Base.send :include, Autocompleteable
+
+# class Dog
+#   extend Concerns::Autocompleteable #=> includes the functionalty
+#   acts_as_autocomplete #=> setup / configure the functionality
+# end
+
+# Avi's Pattern
+module Concerns::Autocompleteable
+  def acts_as_autocomplete(options = {})
+    cattr_accessor :autocompleteable_column
+    self.autocompleteable_column = (options[:on] || :name).to_s
+    self.extend ClassMethods
+    self.send(:include, InstanceMethods)
+  end
+  
+  module ClassMethods
+    def starts_with(query)
+      self.where("#{self.autocompleteable_column} LIKE :query", :query => "#{query}%")
+    end
+  end
+  
+  module InstanceMethods
+    def more_like(increment = 3)
+      starting_with = self.send(self.class.autocompleteable_column)[0..2]
+      self.class.starts_with(starting_with)
+    end
+  end    
+end
