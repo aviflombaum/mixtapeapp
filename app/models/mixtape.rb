@@ -9,6 +9,8 @@ class Mixtape < ActiveRecord::Base
     
   accepts_nested_attributes_for :songs
   
+  after_create :set_owner
+  
   def self.authorize_for_user(*permissions)
     permissions.each do |permission|
       define_method :"#{permission}able_by?" do |user|
@@ -19,8 +21,8 @@ class Mixtape < ActiveRecord::Base
   
   authorize_for_user :edit, :listen, :destroy
   
-  def add_user(user, permission)
-    user_mixtapes.create(:user => user, :permission => UserMixtape::Permissions[permission])
+  def add_user(user, permission)    
+    user_mixtapes.create(:user => user, :permission => UserMixtape::Permissions[permission.to_sym])
   end
   
   # def editable_by?(user)
@@ -35,4 +37,11 @@ class Mixtape < ActiveRecord::Base
   #   user_mixtapes.find_by_user_id(user).try(:destroyable?)    
   # end
   
+  attr_accessor :owner
+  
+  private
+    def set_owner
+      self.add_user(self.owner, :owner)
+    end
+    
 end

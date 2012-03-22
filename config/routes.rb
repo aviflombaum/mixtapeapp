@@ -4,6 +4,8 @@ Mixtapeapp::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   post 'sessions' => 'sessions#create'
 
+
+          
   resources :users, :except => [:show, :destroy]
 
   resources :genres
@@ -12,7 +14,13 @@ Mixtapeapp::Application.routes.draw do
   
   resources :songs
 
-  resources :mixtapes
+  # get '/mixtapes/:mixtape_id/share' => 'mixtapes#share'
+  
+  resources :mixtapes  do
+    resources :shares, :only => [:new, :create]
+  end
+
+
 
   root :to => 'mixtapes#index'
 

@@ -51,10 +51,10 @@ class MixtapesController < ApplicationController
     
     # nested_attributes / fields_for
     @mixtape = Mixtape.new(params[:mixtape])
+    @mixtape.owner = current_user
 
-    
     respond_to do |format|
-      if @mixtape.save
+      if @mixtape.save  
         format.html { redirect_to @mixtape, notice: 'Mixtape was successfully created.' }
         format.json { render json: @mixtape, status: :created, location: @mixtape }
       else
@@ -94,4 +94,5 @@ class MixtapesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

@@ -61,7 +61,6 @@ owner = User.create(:email => 'owner@mixtape.com', :password => 'test')
 collaborator = User.create(:email => 'collaborator@mixtape.com', :password => 'test')
 listener = User.create(:email => 'listener@mixtape.com', :password => 'test')
 
-# user_mixtapes.build(:user => owner, :permission => 0)
 mixtape.add_user(owner, :owner)
 
 

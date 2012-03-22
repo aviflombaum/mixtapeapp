@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  
+  def index
+    @users = User.starts_with(params[:term])
+    
+    respond_to do |f|
+      f.json {render :json => @users.map{|u| {:value => u.email, :label => u.email}}}
+    end
+  end
+  
   def new
     @user = User.new
   end

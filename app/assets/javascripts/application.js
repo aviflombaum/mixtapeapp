@@ -6,5 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.chosen
+//= require fancybox.jquery
 //= require_tree .

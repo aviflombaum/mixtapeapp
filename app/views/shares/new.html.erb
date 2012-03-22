@@ -1,0 +1,14 @@
+<%= form_tag(mixtape_shares_path, :remote => true) do %>
+  <p>
+  <%= label_tag :user_email %><br />
+  <%= text_field_tag :user_email %>
+  </p>
+  <p>
+  <%= label_tag :permission %><br />
+  <%= select_tag(:permission, options_from_collection_for_select(UserMixtape::Permissions, :first, :first)) %>
+  </p>
+  
+  
+  
+  <%= submit_tag "Share" %>
+<% end %>

@@ -20,4 +20,5 @@ class UserMixtape < ActiveRecord::Base
       super
     end
   end
+  
 end  
